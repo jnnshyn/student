@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Login</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 220%; /* Adjusted height */
+            width: 90%;
+        }
+
+        .card {
+            background-color: black;
+            width: 350px;
+            height: 410px;
+            padding: 20px;
+            border-radius: 8px;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            color: #fff;
+        }
+
+        input[type="number"] {
+            margin: 10px 0;
+            padding: 10px;
+            width: 85%;
+            height: 35px;
+            border-radius: 10px;
+            background-color: gray; /* Gray background */
+            font-size: 14px;
+            color: white; /* Text color */
+            text-align: center; /* Center align text */
+        }
+
+            input[type="number"]:focus {
+                border-color: #007bff; /* Blue border on focus */
+                color: white; /* Text color on focus */
+            }
+
+        .btn-secondary {
+            margin-top: 20px;
+            width: 155px; /* Reduced width */
+            height: 30px; /* Reduced height */
+            border-radius: 10px;
+            background-color: darkblue;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+            .btn-secondary:hover {
+                background-color: darkblue;
+            }
+
+        .logo-container {
+            margin-top: 20px;
+        }
+
+            .logo-container img {
+                width: 70px;
+                height: auto;
+            }
+
+        label {
+            font-size: 16px;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+            text-align: center;
+            color: #fff; /* Label text color */
+        }
+
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: 10px;
+            display: none; /* Hidden by default */
+        }
+
+        .success-message {
+            color: green;
+            font-size: 14px;
+            margin-top: 10px;
+            display: none; /* Hidden by default */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="card">
+            <form id="loginForm">
+                <br /><br /><br />
+                <label for="studentId">Student ID Number</label>
+                <br />
+                <input id="studentId" type="number" pattern="\d{7}" required>
+                <div class="error-message" id="errorMessage">Enter a 7-digit ID Number only.</div>
+
+                <button type="submit" class="btn btn-secondary text-uppercase">Submit</button>
+            </form>
+            <br />
+            <div class="logo-container">
+                <!-- Update the path to the image in the 'images' folder -->
+                <img src="C:\Users\shayne\OneDrive\Pictures\fingerprint-line.png" width="70" alt="Logo">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent form submission
+
+            var studentId = document.getElementById('studentId').value;
+            var errorMessage = document.getElementById('errorMessage');
+            var successMessage = document.getElementById('successMessage');
+
+            // Hide all error and success messages by default
+            errorMessage.style.display = 'none';
+            if (successMessage) successMessage.style.display = 'none';
+
+            // Validate if the student ID is a 7-digit number
+            var isValidId = /^\d{7}$/.test(studentId);
+
+            if (!isValidId) {
+                errorMessage.style.display = 'block';
+            } else {
+                // Redirect to the next page
+                window.location.href = '@Url.Action("view", "Home")'; // Update with the actual URL of the next page
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,217 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Attendance Profile</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: white; /* White background */
+            background-image: url('your-image-url.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: black; /* Black text color */
+        }
+
+        .header-box {
+            display: flex;
+            justify-content: space-between; /* Space out the items */
+            align-items: center; /* Center items vertically */
+            background-color: transparent; /* Transparent background */
+            color: red; /* Red font color */
+            padding: 10px;
+            border-radius: 10px;
+            border: 2px solid red;
+            font-size: 24px; /* Larger font size for the logo */
+            font-weight: bold;
+            width: calc(100% - 20px); /* Full width of the viewport minus padding */
+            position: fixed; /* Fixed position to stay at the top */
+            top: 10px; /* Align to the top */
+            left: 10px; /* Align to the left with padding */
+            z-index: 900; /* Ensure it stays on top of other elements */
+        }
+
+        .profile-picture {
+            width: 180px;
+            height: 170px;
+            border-radius: 0%; /* Make the profile picture fully rounded */
+            background-color: #ccc;
+            background-size: cover;
+            background-position: center;
+            position: absolute; /* Use absolute positioning */
+            left: -100px; /* Move the profile picture to the left edge */
+            top: 280px; /* Move the profile picture down */
+        }
+
+        .quotes-container {
+            background-color: rgba(0, 128, 0, 0.3); /* Green semi-transparent background */
+            border: 1px solid #ddd; /* Border around the quotes container */
+            padding: 20px; /* Add padding */
+            font-size: 18px; /* Increase quote font size */
+            max-width: 700px;
+            margin-bottom: 40px; /* Space between quote box and other elements */
+            margin-top: 50px; /* Add space above the quotes container */
+            flex-grow: 1; /* Allow the container to grow */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: black; /* Black text color */
+            text-align: center; /* Center text */
+            margin-left: -100px;
+            backdrop-filter: blur(20px);
+        }
+
+        .attendance-table {
+            border-collapse: collapse;
+            width: 700px;
+            background-color: rgba(255, 0, 0, 0.1); /* Transparent red background */
+            font-size: 16px; /* Increase font size */
+            margin-top: 20px; /* Space between the table and other elements */
+            margin-left: -100px; /* Move the table to the left */
+            backdrop-filter: blur(20px);
+        }
+
+            .attendance-table th, .attendance-table td {
+                border: none; /* Remove borders from all cells */
+                padding: 12px; /* Increase padding for a larger table */
+                text-align: center;
+                background-color: transparent; /* Transparent background for table cells */
+                color: black; /* Black text color */
+            }
+
+            .attendance-table th {
+                background-color: rgba(255, 0, 0, 0.2); /* Transparent red background for header */
+            }
+
+            .attendance-table .header-cell {
+                border: 1px solid #ddd; /* Border for header cells */
+            }
+
+            .attendance-table .data-cell {
+                border: 1px solid #ddd; /* Border for data cells */
+            }
+
+        .content-container {
+            display: flex;
+            flex-direction: column; /* Stack items vertically */
+            align-items: flex-start; /* Align items to the start of the flex container */
+            margin-top: 80px; /* Space below the fixed header */
+        }
+
+        .quotes-attendance-wrapper {
+            width: 100%; /* Full width */
+            margin-left: 300px; /* Add space to the left of the content */
+            margin-bottom: 80px;
+        }
+
+        .attendance-history {
+            font-size: 22px; /* Adjust the font size as needed */
+            font-weight: bold; /* Make the text bold */
+            text-align: center; /* Center the text */
+            margin-bottom: 20px; /* Space below the heading */
+            margin-left: -450px;
+        }
+
+        .done-button {
+            position: fixed;
+            bottom: 30px; /* Distance from the bottom of the page */
+            right: 120px; /* Distance from the right edge of the page */
+            padding: 15px 30px; /* Adjust padding for a larger button */
+            font-size: 18px; /* Larger font size */
+            font-weight: bold;
+            color: white;
+            background-color: red;
+            border: none;
+            border-radius: 8px; /* Slightly larger border radius */
+            cursor: pointer;
+            width:150px;
+            height:50px;
+            
+        }
+
+        .quote-highlight {
+            display: inline;
+            font-weight: normal; /* Normal font weight */
+        }
+
+        .quote-start, .quote-end {
+            font-size: 24px; /* Larger size for quotation marks */
+            font-weight: bold; /* Bold quotation marks */
+        }
+
+        .card, .card-body {
+            background: none; /* Remove background color */
+            border: none; /* Remove border */
+            box-shadow: none; /* Remove box shadow */
+            padding: 0; /* Remove padding */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-box">
+            <div>AE ATTEASE</div>
+            <div>PROFILE</div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="content-container">
+                            <div class="profile-picture" id="profile-pic"></div>
+                            <div class="quotes-attendance-wrapper">
+                                <div class="quotes-container">
+                                    <p>
+                                        <span class="quote-start">"</span> Your attendance has been checked.<br>
+                                        Your guardian will receive an SMS.<br>
+                                        Keep up the great work and<br>
+                                        <span class="quote-highlight">happy learning.</span>
+                                        <span class="quote-end">"</span>
+                                    </p>
+                                </div>
+                                <h5 class="attendance-history">Attendance History</h5>
+                                <table class="attendance-table">
+                                    <thead>
+                                        <tr>
+                                            <th class="header-cell">Number of Lates</th>
+                                            <th class="header-cell">Number of Absences</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="data-cell" id="lates"></td>
+                                            <td class="data-cell" id="absences"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="done-button" onclick="window.location.href='login.html';">Done</button>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Example: Set the profile picture using an image URL
+            $('#profile-pic').css('background-image', 'url("https://via.placeholder.com/100")');
+
+            // Example jQuery usage: Set the table data (you can leave these empty if you want them to be blank initially)
+            $('#lates').text('');
+            $('#absences').text('');
+        });
+    </script>
+</body>
+</html>
